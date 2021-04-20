@@ -12,7 +12,7 @@ spec:
     spec:
       activeDeadlineSeconds: 600
       containers:
-        - image: registry.redhat.io/openshift4/ose-cli:v4.6
+        - image: registry.redhat.io/openshift4/ose-cli:v4.7
           env:
             - name: SERVICE_NAME
               value: nexus
