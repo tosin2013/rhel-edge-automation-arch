@@ -1,0 +1,37 @@
+name = "quarkuscoffeeshop-majestic-monolith"
+description = "This project uses Quarkus, the Supersonic Subatomic Java Framework."
+version = "0.0.1"
+modules = []
+groups = []
+
+[[packages]]
+name = "pcp-pmda-podman"
+version = "*"
+
+[[packages]]
+name = "cockpit-podman"
+version = "*"
+
+[[packages]]
+name = "podman"
+version = "*"
+
+[[packages]]
+name = "podman-plugins"
+version = "*"
+
+[[packages]]
+name = "podman-manpages"
+version = "*"
+
+[[packages]]
+name = "iputils"
+version = "*"
+
+[[packages]]
+name = "jq"
+version = "*"
+
+[[packages]]
+name = "slirp4netns"
+version = "*"
