@@ -3,5 +3,5 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - subscription.yaml
-  - config-defaults-configmap.yaml
+  - quayappsubscription.yaml
+  - quayregistry.yaml
