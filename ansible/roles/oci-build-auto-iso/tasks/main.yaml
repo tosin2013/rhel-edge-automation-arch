@@ -47,7 +47,7 @@
     depth: 0
     paths: "{{ iso_directory }}"
     patterns:
-      - "{{ build_commit_id }}-.*-boot.iso"
+      - "{{ build_commit_id }}-installer.iso"
     use_regex: yes
   register: find_results
   failed_when:
@@ -160,7 +160,7 @@
 - name: Pull ISO From Image Builder to httpd Pod
   ansible.builtin.get_url:
     dest: "{{ edge_iso_path }}"
-    url: "http://{{ image_builder_service_name }}/{{ edge_iso_path | basename }}"
+    url: "http://{{ image_builder_host }}/{{ edge_iso_path | basename }}"
   become: no
   delegate_to: "{{ groups.httpd_pod_group[0] }}"
 
