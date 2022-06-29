@@ -1,0 +1,35 @@
+---
+defaultsConfigmap:
+  annotations:
+    app.kubernetes.io/instance: default
+    app.kubernetes.io/part-of: tekton-pipelines
+  timeoutMinutes: "180"
+
+commonCR:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+
+pipelines:
+  repos:
+    tooling:
+      repoURL: https://github.com/redhat-cop/rhel-edge-automation-arch.git
+      targetRevision: main
+    blueprints:
+      repoURL: https://github.com/redhat-cop/rhel-edge-automation-arch.git
+      targetRevision: blueprints
+    kickstarts:
+      repoURL: https://github.com/redhat-cop/rhel-edge-automation-arch.git
+      targetRevision: kickstarts
+  rhsm_repositories: |
+    {
+      "repositories": [
+        "rhel-8-for-x86_64-baseos-rpms",
+        "rhel-8-for-x86_64-appstream-rpms"
+      ]
+    }
+  additional_content_sources: |
+    {
+      "sources": {
+      }
+    }

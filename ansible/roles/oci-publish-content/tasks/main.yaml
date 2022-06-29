@@ -20,7 +20,7 @@
 
 - name: Wait for Stage Deployment
   ansible.builtin.uri:
-    url: "http://{{ quay_image_path_basename }}-{{ quay_image_tag }}-httpd.rfe.svc.cluster.local/repo"
+    url: "http://{{ quay_image_path_basename }}-{{ quay_image_tag }}-httpd.rfe.svc.cluster.local/repo/config"
   delay: 10
   retries: 60
 
@@ -36,6 +36,14 @@
       - "--repo={{ repo_remote_path }}"
       - "init"
       - "--mode=archive"
+
+- name: Set free space percentage to 0
+  ansible.builtin.lineinfile:
+    path: "{{ repo_remote_path }}/config"
+    insertafter: "[core]"
+    firstmatch: yes
+    line: "min-free-space-percent=0"
+  when: skip_free_space_protection | default(false) | bool
 
 - name: Add Remote OSTree Repository
   ansible.builtin.command:
