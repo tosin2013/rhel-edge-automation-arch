@@ -1,5 +1,16 @@
 ---
+config:
+  env:
+    - name: DISABLE_DEFAULT_ARGOCD_INSTANCE
+      value: "true"
+    - name: ARGOCD_CLUSTER_CONFIG_NAMESPACES
+      value: "rfe-gitops"
+
 namespaces:
+  - name: openshift-gitops-operator
+    annotations:
+      openshift.io/description: OpenShift GitOps Operator
+      openshift.io/display-name: OpenShift GitOps Operator
   - name: rfe-gitops
     annotations:
       openshift.io/description: RFE GitOps
@@ -7,16 +18,13 @@ namespaces:
 
 # OpenShift GitOps
 operator:
-  channel: stable
+  channel: latest
   installPlanApproval: Automatic
   name: openshift-gitops-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-config:
-  env:
-    - name: DISABLE_DEFAULT_ARGOCD_INSTANCE
-      value: "true"
-    - name: ARGOCD_CLUSTER_CONFIG_NAMESPACES
-      value: "rfe-gitops"
+
 operatorgroup:
-  create: false
+  allNamespaces: true
+
+namespaceOverride: openshift-gitops-operator
