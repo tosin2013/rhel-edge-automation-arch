@@ -40,7 +40,7 @@ setup:
   image:
     registry: registry.redhat.io
     repository: openshift4/ose-cli
-    version: v4.6
+    version: v4.14
     imagePullPolicy: IfNotPresent
 
 setupJob:
